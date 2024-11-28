@@ -1,0 +1,102 @@
+---
+const posts = [
+  {
+    date: "2024.04.01",
+    title: "新しいフィットネスルームがオープン",
+    category: "施設案内",
+    author: "KIZUNA STAFF",
+    views: 245,
+    link: "/blog/new-fitness-room"
+  },
+  {
+    date: "2024.03.28",
+    title: "春季コミュニティイベントのお知らせ",
+    category: "イベント",
+    author: "KIZUNA STAFF",
+    views: 189,
+    link: "/blog/spring-events"
+  },
+  {
+    date: "2024.03.25",
+    title: "新規入居者様向けウェルカムパーティー開催",
+    category: "イベント",
+    author: "KIZUNA STAFF",
+    views: 156,
+    link: "/blog/welcome-party"
+  },
+  {
+    date: "2024.03.20",
+    title: "コワーキングスペースリニューアル完了",
+    category: "施設案内",
+    author: "KIZUNA STAFF",
+    views: 203,
+    link: "/blog/coworking-renewal"
+  },
+  {
+    date: "2024.03.15",
+    title: "レジデントインタビュー：起業家の視点",
+    category: "インタビュー",
+    author: "KIZUNA STAFF",
+    views: 167,
+    link: "/blog/resident-interview"
+  }
+];
+---
+
+<section id="blog" class="py-12 md:py-20 bg-fuchi-50">
+  <div class="container mx-auto px-4">
+    <h2 class="text-2xl md:text-3xl font-bold text-center mb-3 md:mb-4">ブログ & お知らせ</h2>
+    <p class="text-center text-gray-600 mb-8 md:mb-12">最新情報をお届けします</p>
+
+    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="bg-fuchi-50">
+              <th class="px-4 md:px-6 py-3 md:py-4 text-left text-xs md:text-sm font-medium text-fuchi-600">日付</th>
+              <th class="px-4 md:px-6 py-3 md:py-4 text-left text-xs md:text-sm font-medium text-fuchi-600">タイトル</th>
+              <th class="hidden md:table-cell px-6 py-4 text-left text-sm font-medium text-fuchi-600">カテゴリー</th>
+              <th class="hidden md:table-cell px-6 py-4 text-left text-sm font-medium text-fuchi-600">投稿者</th>
+              <th class="hidden md:table-cell px-6 py-4 text-left text-sm font-medium text-fuchi-600">閲覧数</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            {posts.map((post) => (
+              <tr class="hover:bg-fuchi-50/50 transition-colors">
+                <td class="px-4 md:px-6 py-3 md:py-4 text-xs md:text-sm text-gray-600">{post.date}</td>
+                <td class="px-4 md:px-6 py-3 md:py-4">
+                  <a href={post.link} class="text-fuchi-600 hover:text-fuchi-700 font-medium text-sm md:text-base">
+                    {post.title}
+                  </a>
+                  <div class="md:hidden mt-1">
+                    <span class="px-2 py-1 text-xs font-medium bg-fuchi-100 text-fuchi-600 rounded-full">
+                      {post.category}
+                    </span>
+                  </div>
+                </td>
+                <td class="hidden md:table-cell px-6 py-4">
+                  <span class="px-3 py-1 text-xs font-medium bg-fuchi-100 text-fuchi-600 rounded-full">
+                    {post.category}
+                  </span>
+                </td>
+                <td class="hidden md:table-cell px-6 py-4 text-sm text-gray-600">{post.author}</td>
+                <td class="hidden md:table-cell px-6 py-4 text-sm text-gray-600">{post.views}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div class="px-4 md:px-6 py-3 md:py-4 bg-fuchi-50/30 flex flex-col md:flex-row justify-between items-center gap-3">
+        <p class="text-xs md:text-sm text-gray-600">1-5 of 24 posts</p>
+        <div class="flex gap-2">
+          <button class="px-3 md:px-4 py-2 text-xs md:text-sm bg-white text-fuchi-600 rounded-md shadow hover:bg-fuchi-50 disabled:opacity-50" disabled>
+            Previous
+          </button>
+          <button class="px-3 md:px-4 py-2 text-xs md:text-sm bg-white text-fuchi-600 rounded-md shadow hover:bg-fuchi-50">
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

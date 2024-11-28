@@ -1,0 +1,132 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+
+const post = {
+  title: "新しいフィットネスルームがオープン",
+  date: "2024.04.01",
+  author: "KIZUNA STAFF",
+  category: "施設案内",
+  content: `
+    この度、KIZUNAレジデンスの新しい施設として、最新設備を備えたフィットネスルームがオープンいたしました。
+
+    ## 充実の設備
+
+    - Technogym社製の最新有酸素マシン
+    - フリーウェイトエリア
+    - ストレッチ・ヨガスペース
+    - パーソナルロッカールーム
+    - シャワールーム完備
+
+    ## 24時間利用可能
+
+    仕事前のモーニングワークアウトから、終業後の気分転換まで、ライフスタイルに合わせて柔軟にご利用いただけます。
+
+    ## プロフェッショナルトレーナーによるサポート
+
+    週3回、専属トレーナーが常駐し、効果的なトレーニング方法のアドバイスを提供いたします。また、月1回の無料カウンセリングもご利用いただけます。
+
+    ## 今後の展開
+
+    - グループフィットネスクラスの開催
+    - 栄養士による食事指導セミナー
+    - 会員様同士のフィットネスコミュニティ形成
+
+    より充実したライフスタイルのサポートを目指し、今後もサービスの拡充に努めてまいります。
+  `,
+  images: [
+    {
+      url: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200",
+      alt: "最新のフィットネス設備"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1576678927484-cc907957088c?auto=format&fit=crop&w=1200",
+      alt: "ヨガスタジオ"
+    }
+  ]
+};
+---
+
+<Layout title={`${post.title} | KIZUNA RESIDENCE`}>
+  <Navigation />
+  <main class="pt-16">
+    <article>
+      <div class="relative h-96">
+        <img 
+          src={post.images[0].url}
+          alt={post.images[0].alt}
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+          <div class="container mx-auto">
+            <h1 class="text-4xl font-bold mb-4">{post.title}</h1>
+            <div class="flex gap-4 text-white/90">
+              <time>{post.date}</time>
+              <span>|</span>
+              <span>{post.author}</span>
+              <span class="px-3 py-1 text-xs font-medium bg-white/20 rounded-full">
+                {post.category}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container mx-auto px-4 py-12">
+        <div class="grid md:grid-cols-3 gap-12">
+          <div class="md:col-span-2">
+            <div class="prose prose-lg max-w-none">
+              {post.content.split('\n').map((paragraph) => (
+                paragraph.startsWith('##') ? 
+                  <h2 class="text-2xl font-bold mt-8 mb-4">{paragraph.replace('## ', '')}</h2> :
+                paragraph.startsWith('- ') ?
+                  <li class="ml-4">{paragraph.replace('- ', '')}</li> :
+                paragraph.trim() && <p class="mb-4">{paragraph}</p>
+              ))}
+            </div>
+
+            <div class="mt-12 grid grid-cols-2 gap-6">
+              {post.images.map((image) => (
+                <img 
+                  src={image.url} 
+                  alt={image.alt}
+                  class="rounded-lg shadow-lg"
+                />
+              ))}
+            </div>
+          </div>
+
+          <aside>
+            <div class="bg-fuchi-50 p-6 rounded-xl sticky top-24">
+              <h3 class="text-xl font-bold mb-4">施設利用案内</h3>
+              <dl class="space-y-4">
+                <div>
+                  <dt class="text-sm text-gray-600">営業時間</dt>
+                  <dd class="font-medium">24時間</dd>
+                </div>
+                <div>
+                  <dt class="text-sm text-gray-600">利用対象</dt>
+                  <dd class="font-medium">レジデンス会員様</dd>
+                </div>
+                <div>
+                  <dt class="text-sm text-gray-600">トレーナー在籍時間</dt>
+                  <dd class="font-medium">平日 9:00-20:00</dd>
+                </div>
+              </dl>
+              <div class="mt-6">
+                <a 
+                  href="#contact"
+                  class="block w-full bg-fuchi-600 text-white text-center py-3 rounded-lg
+                  hover:bg-fuchi-700 transition-colors duration-300"
+                >
+                  見学予約
+                </a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </article>
+  </main>
+</Layout>

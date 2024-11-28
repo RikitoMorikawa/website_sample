@@ -1,0 +1,43 @@
+---
+const spaces = [
+  {
+    title: "プレミアムルーム",
+    description: "和モダンの洗練された空間で、ワンランク上の暮らしを。ビジネスワークスペースとしても最適です。",
+    image: "https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=800"
+  },
+  {
+    title: "ラウンジ",
+    description: "上質な和の趣を感じる開放的な空間。ビジネスミーティングやソーシャルイベントに。",
+    image: "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800"
+  },
+  {
+    title: "プレミアムキッチン",
+    description: "プロ仕様の設備を備えた、贅沢なダイニング空間。特別な時間を演出します。",
+    image: "https://images.unsplash.com/photo-1564540586988-aa4e53c3d799?auto=format&fit=crop&w=800"
+  }
+];
+---
+
+<section id="spaces" class="py-20 bg-fuchi-50">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-4">施設案内</h2>
+    <p class="text-center text-gray-600 mb-12">洗練された和モダンの空間で、贅沢な暮らしを</p>
+    <div class="grid md:grid-cols-3 gap-8">
+      {spaces.map((space) => (
+        <div class="bg-white rounded-xl shadow-xl overflow-hidden transform hover:-translate-y-1 transition-all duration-300">
+          <div class="h-64 overflow-hidden">
+            <img 
+              src={space.image} 
+              alt={space.title} 
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+            >
+          </div>
+          <div class="p-8">
+            <h3 class="text-2xl font-bold mb-3 text-fuchi-700">{space.title}</h3>
+            <p class="text-gray-600 leading-relaxed">{space.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

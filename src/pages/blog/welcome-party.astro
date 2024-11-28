@@ -1,0 +1,141 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+
+const post = {
+  title: "新規入居者様向けウェルカムパーティー開催",
+  date: "2024.03.25",
+  author: "KIZUNA STAFF",
+  category: "イベント",
+  content: `
+    3月に新たにKIZUNA RESIDENCEファミリーに加わった皆様を歓迎する
+    ウェルカムパーティーを開催いたします。
+
+    ## イベント詳細
+
+    ### 開催日時
+    2024年4月5日(金) 19:00-21:00
+
+    ### 場所
+    メインラウンジ
+
+    ### 内容
+    - ウェルカムドリンク & 軽食ビュッフェ
+    - 新入居者様の自己紹介タイム
+    - コミュニティメンバーとの交流会
+    - レジデンスマネージャーによる施設案内
+    - サプライズプレゼント抽選会
+
+    ## 参加対象
+
+    - 2024年3月入居の新規会員様
+    - 既存会員様（交流促進のため、ぜひご参加ください）
+
+    ## ドレスコード
+
+    スマートカジュアル
+
+    ## 特別企画
+
+    当日は写真家の山田太郎氏をお招きし、
+    プロフェッショナルによる記念撮影会も実施いたします。
+    素敵な思い出の1枚を残しましょう。
+  `,
+  images: [
+    {
+      url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200",
+      alt: "パーティー会場"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1200",
+      alt: "ビュッフェ"
+    }
+  ]
+};
+---
+
+<Layout title={`${post.title} | KIZUNA RESIDENCE`}>
+  <Navigation />
+  <main class="pt-16">
+    <article>
+      <div class="relative h-96">
+        <img 
+          src={post.images[0].url}
+          alt={post.images[0].alt}
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+          <div class="container mx-auto">
+            <h1 class="text-4xl font-bold mb-4">{post.title}</h1>
+            <div class="flex gap-4 text-white/90">
+              <time>{post.date}</time>
+              <span>|</span>
+              <span>{post.author}</span>
+              <span class="px-3 py-1 text-xs font-medium bg-white/20 rounded-full">
+                {post.category}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container mx-auto px-4 py-12">
+        <div class="grid md:grid-cols-3 gap-12">
+          <div class="md:col-span-2">
+            <div class="prose prose-lg max-w-none">
+              {post.content.split('\n').map((paragraph) => (
+                paragraph.startsWith('### ') ?
+                  <h3 class="text-xl font-bold mt-6 mb-3">{paragraph.replace('### ', '')}</h3> :
+                paragraph.startsWith('## ') ? 
+                  <h2 class="text-2xl font-bold mt-8 mb-4">{paragraph.replace('## ', '')}</h2> :
+                paragraph.startsWith('- ') ?
+                  <li class="ml-4">{paragraph.replace('- ', '')}</li> :
+                paragraph.trim() && <p class="mb-4">{paragraph}</p>
+              ))}
+            </div>
+
+            <div class="mt-12 grid grid-cols-2 gap-6">
+              {post.images.map((image) => (
+                <img 
+                  src={image.url} 
+                  alt={image.alt}
+                  class="rounded-lg shadow-lg"
+                />
+              ))}
+            </div>
+          </div>
+
+          <aside>
+            <div class="bg-fuchi-50 p-6 rounded-xl sticky top-24">
+              <h3 class="text-xl font-bold mb-4">参加案内</h3>
+              <dl class="space-y-4">
+                <div>
+                  <dt class="text-sm text-gray-600">参加費</dt>
+                  <dd class="font-medium">無料</dd>
+                </div>
+                <div>
+                  <dt class="text-sm text-gray-600">定員</dt>
+                  <dd class="font-medium">50名</dd>
+                </div>
+                <div>
+                  <dt class="text-sm text-gray-600">申込期限</dt>
+                  <dd class="font-medium">4月3日(水) 18:00まで</dd>
+                </div>
+              </dl>
+              <div class="mt-6">
+                <a 
+                  href="/member/portal"
+                  class="block w-full bg-fuchi-600 text-white text-center py-3 rounded-lg
+                  hover:bg-fuchi-700 transition-colors duration-300"
+                >
+                  参加申し込み
+                </a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </article>
+  </main>
+</Layout>

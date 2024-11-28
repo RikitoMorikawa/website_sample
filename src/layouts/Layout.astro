@@ -1,0 +1,79 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ja" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="全国の才能あふれる人々が集う上質な暮らしとコミュニティの空間" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-fuchi-50 antialiased overflow-x-hidden">
+    <slot />
+    <style is:global>
+      :root {
+        --accent: 66, 146, 131;
+        scroll-behavior: smooth;
+      }
+      html {
+        font-family: 'Noto Sans JP', sans-serif;
+        -webkit-text-size-adjust: 100%;
+        scroll-behavior: smooth;
+      }
+      @supports (font-size-adjust: 100%) {
+        html { font-size-adjust: 100%; }
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        overscroll-behavior-y: none;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        will-change: transform;
+      }
+      .container {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      @media (min-width: 640px) {
+        .container {
+          max-width: 640px;
+        }
+      }
+      @media (min-width: 768px) {
+        .container {
+          max-width: 768px;
+        }
+      }
+      @media (min-width: 1024px) {
+        .container {
+          max-width: 1024px;
+        }
+      }
+      @media (min-width: 1280px) {
+        .container {
+          max-width: 1280px;
+        }
+      }
+      * {
+        -webkit-tap-highlight-color: transparent;
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+---
+---
+
+<nav class="fixed w-full bg-white/90 backdrop-blur-sm z-50 shadow-sm">
+  <div class="container mx-auto px-4">
+    <div class="flex justify-between items-center h-16">
+      <a href="/" class="text-lg md:text-xl font-bold text-fuchi-500">KIZUNA RESIDENCE</a>
+      
+      <!-- Mobile Menu Button -->
+      <button 
+        id="menuButton"
+        class="md:hidden p-2 text-fuchi-600 hover:text-fuchi-700 transition-colors"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path id="menuIcon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          <path id="closeIcon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex space-x-8">
+        <a href="#about" class="text-fuchi-700 hover:text-fuchi-500 transition-colors">コンセプト</a>
+        <a href="#spaces" class="text-fuchi-700 hover:text-fuchi-500 transition-colors">施設案内</a>
+        <a href="#events" class="text-fuchi-700 hover:text-fuchi-500 transition-colors">イベント</a>
+        <a href="#contact" class="text-fuchi-700 hover:text-fuchi-500 transition-colors">お問い合わせ</a>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden">
+      <div class="py-4 space-y-4">
+        <a href="#about" class="block text-fuchi-700 hover:text-fuchi-500 transition-colors">コンセプト</a>
+        <a href="#spaces" class="block text-fuchi-700 hover:text-fuchi-500 transition-colors">施設案内</a>
+        <a href="#events" class="block text-fuchi-700 hover:text-fuchi-500 transition-colors">イベント</a>
+        <a href="#contact" class="block text-fuchi-700 hover:text-fuchi-500 transition-colors">お問い合わせ</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const menuButton = document.getElementById('menuButton');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuIcon = document.getElementById('menuIcon');
+  const closeIcon = document.getElementById('closeIcon');
+
+  menuButton?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+    menuIcon?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
+  });
+
+  // Close menu when clicking on a link
+  const mobileLinks = mobileMenu?.querySelectorAll('a');
+  mobileLinks?.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+    });
+  });
+</script>

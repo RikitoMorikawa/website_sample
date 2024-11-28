@@ -1,0 +1,139 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+
+const post = {
+  title: "春季コミュニティイベントのお知らせ",
+  date: "2024.03.28",
+  author: "KIZUNA STAFF",
+  category: "イベント",
+  content: `
+    KIZUNA RESIDENCEでは、2024年春季のコミュニティイベントを開催いたします。
+    今回は、桜をテーマに様々なイベントをご用意しております。
+
+    ## イベントスケジュール
+
+    ### 4月上旬：桜花見パーティー
+    - 日時：4月6日(土) 17:00-20:00
+    - 場所：屋上ガーデン
+    - 内容：シャンパン片手に夜桜を愛でる特別な夜
+
+    ### 4月中旬：春の料理教室
+    - 日時：4月13日(土) 14:00-16:00
+    - 場所：シェアキッチン
+    - 内容：旬の食材を使った和食レッスン
+
+    ### 4月下旬：アートワークショップ
+    - 日時：4月20日(土) 15:00-17:00
+    - 場所：クリエイティブルーム
+    - 内容：桜をモチーフにした水彩画レッスン
+
+    ## 参加方法
+
+    各イベントの詳細と参加申し込みは、レジデンス会員様専用ポータルサイトにて受け付けております。
+    定員になり次第、締め切らせていただきますので、お早めにお申し込みください。
+
+    ## 注意事項
+
+    - 天候により一部イベントの日程が変更になる可能性があります
+    - 外部からのゲスト参加は会員様1名につき1名まで可能です
+    - 料理教室は材料費として別途2,000円を頂戴いたします
+  `,
+  images: [
+    {
+      url: "https://images.unsplash.com/photo-1522383225653-ed111181a951?auto=format&fit=crop&w=1200",
+      alt: "夜桜"
+    },
+    {
+      url: "https://images.unsplash.com/photo-1617347454431-f49d7ff5c3b1?auto=format&fit=crop&w=1200",
+      alt: "料理教室"
+    }
+  ]
+};
+---
+
+<Layout title={`${post.title} | KIZUNA RESIDENCE`}>
+  <Navigation />
+  <main class="pt-16">
+    <article>
+      <div class="relative h-96">
+        <img 
+          src={post.images[0].url}
+          alt={post.images[0].alt}
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+          <div class="container mx-auto">
+            <h1 class="text-4xl font-bold mb-4">{post.title}</h1>
+            <div class="flex gap-4 text-white/90">
+              <time>{post.date}</time>
+              <span>|</span>
+              <span>{post.author}</span>
+              <span class="px-3 py-1 text-xs font-medium bg-white/20 rounded-full">
+                {post.category}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container mx-auto px-4 py-12">
+        <div class="grid md:grid-cols-3 gap-12">
+          <div class="md:col-span-2">
+            <div class="prose prose-lg max-w-none">
+              {post.content.split('\n').map((paragraph) => (
+                paragraph.startsWith('### ') ?
+                  <h3 class="text-xl font-bold mt-6 mb-3">{paragraph.replace('### ', '')}</h3> :
+                paragraph.startsWith('## ') ? 
+                  <h2 class="text-2xl font-bold mt-8 mb-4">{paragraph.replace('## ', '')}</h2> :
+                paragraph.startsWith('- ') ?
+                  <li class="ml-4">{paragraph.replace('- ', '')}</li> :
+                paragraph.trim() && <p class="mb-4">{paragraph}</p>
+              ))}
+            </div>
+
+            <div class="mt-12 grid grid-cols-2 gap-6">
+              {post.images.map((image) => (
+                <img 
+                  src={image.url} 
+                  alt={image.alt}
+                  class="rounded-lg shadow-lg"
+                />
+              ))}
+            </div>
+          </div>
+
+          <aside>
+            <div class="bg-fuchi-50 p-6 rounded-xl sticky top-24">
+              <h3 class="text-xl font-bold mb-4">イベント参加案内</h3>
+              <dl class="space-y-4">
+                <div>
+                  <dt class="text-sm text-gray-600">参加資格</dt>
+                  <dd class="font-medium">レジデンス会員様とそのゲスト</dd>
+                </div>
+                <div>
+                  <dt class="text-sm text-gray-600">申込期限</dt>
+                  <dd class="font-medium">各イベント3日前まで</dd>
+                </div>
+                <div>
+                  <dt class="text-sm text-gray-600">キャンセル</dt>
+                  <dd class="font-medium">前日までに要連絡</dd>
+                </div>
+              </dl>
+              <div class="mt-6">
+                <a 
+                  href="/member/portal"
+                  class="block w-full bg-fuchi-600 text-white text-center py-3 rounded-lg
+                  hover:bg-fuchi-700 transition-colors duration-300"
+                >
+                  会員ポータルへ
+                </a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </article>
+  </main>
+</Layout>

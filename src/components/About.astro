@@ -1,0 +1,39 @@
+---
+const images = [
+  {
+    url: "https://images.unsplash.com/photo-1553653924-39b70295f8da?auto=format&fit=crop&w=800",
+    alt: "モダンな和室の内装"
+  },
+  {
+    url: "https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=800",
+    alt: "洗練された和モダン空間"
+  }
+];
+---
+
+<section id="about" class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-12">至高の暮らし</h2>
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6">
+        <p class="text-lg leading-relaxed">
+          日本の美意識と現代的なラグジュアリーが融合した、
+          唯一無二のプレミアムレジデンス。
+        </p>
+        <p class="text-lg leading-relaxed">
+          ビジネスエリートからクリエイターまで、
+          各界で活躍する方々が集う洗練されたコミュニティを形成しています。
+        </p>
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+        {images.map((image) => (
+          <img 
+            src={image.url} 
+            alt={image.alt} 
+            class="rounded-lg shadow-lg object-cover h-48 w-full"
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

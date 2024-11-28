@@ -1,0 +1,105 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+
+const event = {
+  title: "エグゼクティブ朝活セミナー",
+  date: "2024.05.01",
+  time: "07:00 - 09:00",
+  location: "KIZUNA RESIDENCE メインラウンジ",
+  price: "¥6,000",
+  capacity: "25名",
+  description: `
+    成功を収めるビジネスリーダーに共通する朝の習慣とは？
+    株式会社Innovation Leaders代表取締役CEO 佐藤誠一氏をお招きし、
+    ビジネスリーダーとしての心構えと実践的な朝活習慣についてお話しいただきます。
+
+    朝食として、シェフ特製のヘルシーブレックファストもご用意しております。
+  `,
+  schedule: [
+    { time: "06:45", title: "受付開始" },
+    { time: "07:00", title: "朝食セッション" },
+    { time: "07:45", title: "講演：成功者の朝習慣" },
+    { time: "08:30", title: "質疑応答・ネットワーキング" },
+    { time: "09:00", title: "終了" }
+  ]
+};
+---
+
+<Layout title={`${event.title} | KIZUNA RESIDENCE`}>
+  <Navigation />
+  <main class="pt-16">
+    <div class="relative h-96">
+      <img 
+        src="https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&fit=crop&w=2000"
+        alt={event.title}
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+      <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+        <div class="container mx-auto">
+          <h1 class="text-4xl font-bold mb-4">{event.title}</h1>
+          <div class="flex gap-4 text-white/90">
+            <p>{event.date}</p>
+            <p>{event.time}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mx-auto px-4 py-12">
+      <div class="grid md:grid-cols-3 gap-12">
+        <div class="md:col-span-2 space-y-8">
+          <div>
+            <h2 class="text-2xl font-bold mb-4">イベント詳細</h2>
+            <p class="text-gray-600 whitespace-pre-line leading-relaxed">
+              {event.description}
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-bold mb-4">タイムスケジュール</h2>
+            <div class="space-y-4">
+              {event.schedule.map((item) => (
+                <div class="flex gap-4">
+                  <div class="w-20 font-medium text-fuchi-600">{item.time}</div>
+                  <div class="text-gray-600">{item.title}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-fuchi-50 p-6 rounded-xl h-fit">
+          <h3 class="text-xl font-bold mb-4">イベント情報</h3>
+          <dl class="space-y-4">
+            <div>
+              <dt class="text-sm text-gray-600">日時</dt>
+              <dd class="font-medium">{event.date} {event.time}</dd>
+            </div>
+            <div>
+              <dt class="text-sm text-gray-600">場所</dt>
+              <dd class="font-medium">{event.location}</dd>
+            </div>
+            <div>
+              <dt class="text-sm text-gray-600">参加費</dt>
+              <dd class="font-medium">{event.price}</dd>
+            </div>
+            <div>
+              <dt class="text-sm text-gray-600">定員</dt>
+              <dd class="font-medium">{event.capacity}</dd>
+            </div>
+          </dl>
+          <div class="mt-6">
+            <button 
+              class="block w-full bg-fuchi-600 text-white text-center py-3 rounded-lg
+              hover:bg-fuchi-700 transition-colors duration-300"
+            >
+              参加申し込み
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
